@@ -171,8 +171,9 @@
     <button class="nav_button" id="homeBtn">Home</button>
     <button class="nav_button" id="servicesBtn">Services</button>
     <button class="nav_button" id="aboutBtn">About Us</button>
-    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signupBtn">Sign-up</button>
     <button class="nav_button" id="signinBtn">Sign-in</button>
+
 </div>
 </nav>
   <!-- Home -->
@@ -294,9 +295,60 @@
       window.location.href = "signin.html";
     };
 
-    a.appendChild(dashboard);
-    a.appendChild(signout);
+
   }
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  const signupBtn = document.getElementById("signupBtn");
+  const signinBtn = document.getElementById("signinBtn");
+  const navContainer = document.getElementById("a");
+
+  // If user NOT logged in → show Sign-in & Sign-up
+  if (!loggedInUser) {
+    signupBtn.style.display = "inline-block";
+    signinBtn.style.display = "inline-block";
+    return; // stop here
+  }
+
+  // If user IS logged in:
+  signupBtn.style.display = "none";
+  signinBtn.style.display = "none";
+
+  // ---- Dashboard Button ----
+  const dashboardBtn = document.createElement("button");
+  dashboardBtn.classList.add("nav_button");
+  dashboardBtn.innerText = "Dashboard";
+  dashboardBtn.onclick = () => window.location.href = "dashboard.html";
+  navContainer.appendChild(dashboardBtn);
+
+  // ---- Sign Out Button ----
+  const signOutBtn = document.createElement("button");
+  signOutBtn.classList.add("nav_button");
+  signOutBtn.innerText = "Sign Out";a
+
+  signOutBtn.onclick = () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users = users.map(user => {
+      if (user.email === loggedInUser) user.state = "inactive";
+      return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.removeItem("loggedInUser");
+
+    alert("Signed out successfully!");
+    location.reload(); // show sign-in/sign-up again
+  };
+
+  navContainer.appendChild(signOutBtn);
+
+});
 </script>
 
 

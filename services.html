@@ -68,8 +68,9 @@ nav {
     <button class="nav_button" id="homeBtn">Home</button>
     <button class="nav_button" id="servicesBtn">Services</button>
     <button class="nav_button" id="aboutBtn">About Us</button>
-    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signupBtn">Sign-up</button>
     <button class="nav_button" id="signinBtn">Sign-in</button>
+
 </div>
 </nav>
 
@@ -85,61 +86,135 @@ nav {
 <footer>
     <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
   </footer>
+   <script>
+    // Navigation click handlers
+    document.getElementById("homeBtn").onclick = () => {
+      window.location.href = "homepage.html";
+    };
 
-<script>
-  // NAVIGATION
-  homeBtn.onclick = () => location.href = "homepage.html";
-  servicesBtn.onclick = () => location.href = "services.html";
-  aboutBtn.onclick = () => location.href = "about.html";
-  document.getElementById("signupBtn").onclick = () =>
+    document.getElementById("servicesBtn").onclick = () => {
+      window.location.href = "services.html";
+    };
+
+    document.getElementById("aboutBtn").onclick = () => {
+      window.location.href = "about.html";
+    };
+    document.getElementById("signupBtn").onclick = () =>
     window.location.href = "signup.html";
 
   document.getElementById("signinBtn").onclick = () =>
     window.location.href = "signin.html";
+  </script>
 
-  // LOGIN LOGIC
+ <script>
+  // Check if user is logged in
   const loggedInUser = localStorage.getItem("loggedInUser");
-  const nav = document.getElementById("navbar");
-
+   const nav = document.getElementById("a");
+  // Create Sign-in and Sign-up buttons if logged out
   if (!loggedInUser) {
+
+    // Create Buttons Dynamically
+    const nav = document.querySelector("nav");
+
     let signup = document.createElement("button");
     signup.id = "signupBtn";
     signup.innerText = "Sign-Up";
-    signup.onclick = () => location.href = "signup.html";
+    signup.onclick = () => window.location.href = "signup.html";
 
     let signin = document.createElement("button");
     signin.id = "signinBtn";
     signin.innerText = "Sign-In";
-    signin.onclick = () => location.href = "signin.html";
+    signin.onclick = () => window.location.href = "signin.html";
 
+    
 
   } else {
+    // User logged in → show Dashboard + Sign Out
+    const nav = document.querySelector("nav");
+
     let dashboard = document.createElement("button");
-    dashboard.id = "dashboardBtn";
+    dashboard.id  = "dashboardBtn";
     dashboard.classList.add("nav_button")
     dashboard.innerText = "Dashboard";
-    dashboard.onclick = () => location.href = "dashboard.html";
+    dashboard.onclick = () => window.location.href = "dashboard.html";
 
     let signout = document.createElement("button");
     signout.id = "signOutBtn";
     signout.classList.add("nav_button")
     signout.innerText = "Sign Out";
+
     signout.onclick = () => {
+      // Update user state to INACTIVE
       let users = JSON.parse(localStorage.getItem("users")) || [];
-      users = users.map(u => {
-        if (u.email === loggedInUser) u.state = "inactive";
-        return u;
+
+      users = users.map(user => {
+        if (user.email === loggedInUser) {
+          user.state = "inactive";
+        }
+        return user;
       });
+
       localStorage.setItem("users", JSON.stringify(users));
       localStorage.removeItem("loggedInUser");
+
       alert("Signed out successfully!");
-      location.href = "signin.html";
+      window.location.href = "signin.html";
     };
 
-    nav.appendChild(dashboard);
-    nav.appendChild(signout);
+
   }
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const loggedInUser = localStorage.getItem("loggedInUser");
+
+  const signupBtn = document.getElementById("signupBtn");
+  const signinBtn = document.getElementById("signinBtn");
+  const navContainer = document.getElementById("a");
+
+  // If user NOT logged in → show Sign-in & Sign-up
+  if (!loggedInUser) {
+    signupBtn.style.display = "inline-block";
+    signinBtn.style.display = "inline-block";
+    return; // stop here
+  }
+
+  // If user IS logged in:
+  signupBtn.style.display = "none";
+  signinBtn.style.display = "none";
+
+  // ---- Dashboard Button ----
+  const dashboardBtn = document.createElement("button");
+  dashboardBtn.classList.add("nav_button");
+  dashboardBtn.innerText = "Dashboard";
+  dashboardBtn.onclick = () => window.location.href = "dashboard.html";
+  navContainer.appendChild(dashboardBtn);
+
+  // ---- Sign Out Button ----
+  const signOutBtn = document.createElement("button");
+  signOutBtn.classList.add("nav_button");
+  signOutBtn.innerText = "Sign Out";a
+
+  signOutBtn.onclick = () => {
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+
+    users = users.map(user => {
+      if (user.email === loggedInUser) user.state = "inactive";
+      return user;
+    });
+
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.removeItem("loggedInUser");
+
+    alert("Signed out successfully!");
+    location.reload(); // show sign-in/sign-up again
+  };
+
+  navContainer.appendChild(signOutBtn);
+
+});
+</script>
 </body>
 </html>
