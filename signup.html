@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <style>
+  
+  #signUpBtn {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: #34495e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+#signUpBtn:hover {
+  background: #34495e;
+}
+
+
+    footer {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  
+  </style>
+  <header>
+    <h1>Expense Tracker</h1>
+    <p style="color: white;">Manage your budget smartly</p>
+  </header>
+
+ <nav id="navbar">
+  <div style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+
+<script>
+  document.getElementById("homeBtn").onclick = () =>
+    window.location.href = "homepage.html";
+
+  
+
+  document.getElementById("servicesBtn").onclick = () =>
+    window.location.href = "services.html";
+
+  document.getElementById("aboutBtn").onclick = () =>
+    window.location.href = "about.html";
+    document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
+
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
+</script>
+
+  <!-- Sign Up Page -->
+  <div id="Sign-up" class="container1">
+    <h2>Sign Up</h2>
+    <input type="email" id="signupUser" placeholder="Email" />
+    <input type="password" id="signupPass" placeholder="Password" />
+    <button id="signUpBtn">Sign Up</button>
+    <p>Already have an account? <a href="signin.html">Sign-in</a></p>
+  </div>
+
+    <footer >
+    <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
+  </footer>
+
+  <script>
+    document.getElementById("signUpBtn").addEventListener("click", function () {
+      let username = document.getElementById("signupUser").value.trim();
+      let password = document.getElementById("signupPass").value.trim();
+
+      if (username === "" || password === "") {
+        alert("Please fill in both Email-id and Password!");
+        return;
+      }
+
+      // Retrieve existing users safely
+      let users = JSON.parse(localStorage.getItem("users"));
+
+      // Ensure users is always an array (fix for 'some is not a function')
+      if (!Array.isArray(users)) {
+        users = [];
+      }
+
+      // Check if email already exists
+      let exists = users.some(u => u.email === username);
+
+      if (exists) {
+        alert("This email is already registered. Please sign in.");
+        return;
+      }
+
+      // Add new user
+      users.push({
+        email: username,
+        password: password
+      });
+
+      // Save updated user list
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Sign-up successful! Redirecting to Sign-in page...");
+      window.location.href = "signin.html";
+    });
+     </script>
+    <footer>
+    <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
+  </footer>
+
+
+  
+
+</body>
+</html>

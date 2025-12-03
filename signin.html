@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sign In - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <style>
+
+#signInBtn {
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: #34495e;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+#signInBtn:hover {
+  background: #34495e;
+}
+    footer {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+  <header>
+    <h1>Expense Tracker</h1>
+    <p style="color: white;">Manage your budget smartly</p>
+  </header>
+
+ <nav id="navbar">
+  <div style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+
+<script>
+  document.getElementById("homeBtn").onclick = () =>
+    window.location.href = "homepage.html";
+
+  document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
+
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
+
+  document.getElementById("servicesBtn").onclick = () =>
+    window.location.href = "services.html";
+
+  document.getElementById("aboutBtn").onclick = () =>
+    window.location.href = "about.html";
+</script>
+
+
+
+  <!-- Sign In Page -->
+  <div id="Sign-in" class="container" style="width: 40%;">
+    <h2>Sign In</h2>
+    <input type="email" id="signinUser" placeholder="Email" />
+    <input type="password" id="signinPass" placeholder="Password" />
+    <button id="signInBtn">Sign In</button>
+    <p>Don't have an account? <a href="signup.html">Sign-up</a></p>
+  </div>
+<footer>
+    <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
+  </footer>
+<script>
+document.getElementById("signInBtn").addEventListener("click", function () {
+  let enteredUser = document.getElementById("signinUser").value.trim();
+  let enteredPass = document.getElementById("signinPass").value.trim();
+
+  if (enteredUser === "" || enteredPass === "") {
+    alert("Please fill in both Email-id and Password!");
+    return;
+  }
+
+  // Fetch all registered users
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Compare entered credentials with registered users
+  let userFound = users.find(user => 
+    user.email === enteredUser && user.password === enteredPass
+  );
+
+  let isLoggedin = false;
+
+if (userFound) {
+    isLoggedin = true;
+
+    userFound.state = "active";
+
+    
+    localStorage.setItem("users", JSON.stringify(users));
+
+    localStorage.setItem("loggedInUser", enteredUser);
+
+    alert("Login successful! Redirecting to dashboard...");
+    window.location.href = "dashboard.html";
+}
+});
+</script>
+
+</body>
+</html>

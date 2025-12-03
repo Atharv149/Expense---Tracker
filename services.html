@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Services - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #ffffff;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+nav {
+  background: #34495e;
+  padding: 1px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 40px;
+    }
+    .card {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin: 20px;
+      padding: 20px;
+      width: 280px;
+      transition: transform 0.3s;
+    }
+    .card:hover { transform: translateY(-5px); }
+    footer {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 >Expense Tracker</h1>
+  <p>Manage your budget smartly</p>
+</header>
+
+<nav id="navbar">
+  <div style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+
+<h1 style="text-align:center; margin: 20px;">Our Services</h1>
+
+<div class="services">
+  <div class="card"><h2>Track Expenses</h2><p>Monitor your daily spending effortlessly.</p></div>
+  <div class="card"><h2>Budget Planner</h2><p>Create and manage custom budgets.</p></div>
+  <div class="card"><h2>Group Expenses</h2><p>Split bills easily with friends or family.</p></div>
+  <div class="card"><h2>Reports</h2><p>See charts and insights for better decisions.</p></div>
+</div>
+
+<footer>
+    <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
+  </footer>
+
+<script>
+  // NAVIGATION
+  homeBtn.onclick = () => location.href = "homepage.html";
+  servicesBtn.onclick = () => location.href = "services.html";
+  aboutBtn.onclick = () => location.href = "about.html";
+  document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
+
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
+
+  // LOGIN LOGIC
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const nav = document.getElementById("navbar");
+
+  if (!loggedInUser) {
+    let signup = document.createElement("button");
+    signup.id = "signupBtn";
+    signup.innerText = "Sign-Up";
+    signup.onclick = () => location.href = "signup.html";
+
+    let signin = document.createElement("button");
+    signin.id = "signinBtn";
+    signin.innerText = "Sign-In";
+    signin.onclick = () => location.href = "signin.html";
+
+
+  } else {
+    let dashboard = document.createElement("button");
+    dashboard.id = "dashboardBtn";
+    dashboard.classList.add("nav_button")
+    dashboard.innerText = "Dashboard";
+    dashboard.onclick = () => location.href = "dashboard.html";
+
+    let signout = document.createElement("button");
+    signout.id = "signOutBtn";
+    signout.classList.add("nav_button")
+    signout.innerText = "Sign Out";
+    signout.onclick = () => {
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users = users.map(u => {
+        if (u.email === loggedInUser) u.state = "inactive";
+        return u;
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.removeItem("loggedInUser");
+      alert("Signed out successfully!");
+      location.href = "signin.html";
+    };
+
+    nav.appendChild(dashboard);
+    nav.appendChild(signout);
+  }
+</script>
+
+</body>
+</html>

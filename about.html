@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Verdana, sans-serif;
+      margin: 0;
+      background:white;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+nav {
+  background: #34495e;
+  padding: 1px 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+    h1 { text-align: center; margin: 20px; }
+    .content {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    footer {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Expense Tracker</h1>
+  <p>Manage your budget smartly</p>
+</header>
+
+<nav id="navbar">
+  <div style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+
+<h1>About Us</h1>
+<p style="text-align:center;">Get to know Expense Tracker</p>
+
+<section class="content">
+  <h2>Our Mission</h2>
+  <p>We created Expense Tracker to help individuals and families take control of their finances.</p>
+
+  <h2>Who We Are</h2>
+  <p>We are a passionate team of developers and finance enthusiasts.</p>
+</section>
+
+<footer>
+  Expense Tracker | Built for better money management
+</footer>
+
+<script>
+  // Navigation
+  homeBtn.onclick = () => location.href = "homepage.html";
+  servicesBtn.onclick = () => location.href = "services.html";
+  aboutBtn.onclick = () => location.href = "about.html";
+  document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
+
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
+
+  // LOGIN LOGIC
+  const loggedInUser = localStorage.getItem("loggedInUser");
+  const nav = document.getElementById("navbar");
+
+  if (!loggedInUser) {
+    let signup = document.createElement("button");
+    signup.id = "signupBtn";
+    signup.innerText = "Sign-Up";
+    signup.onclick = () => location.href = "signup.html";
+
+    let signin = document.createElement("button");
+    signin.id = "signinBtn";
+    signin.innerText = "Sign-In";
+    signin.onclick = () => location.href = "signin.html";
+
+    
+
+  } else {
+    let dashboard = document.createElement("button");
+    dashboard.id = "dashboardBtn";
+    dashboard.classList.add("nav_button")
+    dashboard.innerText = "Dashboard";
+    dashboard.onclick = () => location.href = "dashboard.html";
+
+    let signout = document.createElement("button");
+    signout.id = "signOutBtn";
+    signout.classList.add("nav_button")
+    signout.innerText = "Sign Out";
+    signout.onclick = () => {
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users = users.map(u => {
+        if (u.email === loggedInUser) u.state = "inactive";
+        return u;
+      });
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.removeItem("loggedInUser");
+      alert("Signed out successfully!");
+      location.href = "signin.html";
+    };
+
+    nav.appendChild(dashboard);
+    nav.appendChild(signout);
+  }
+</script>
+
+</body>
+</html>

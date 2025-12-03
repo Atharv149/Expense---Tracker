@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* -------------------- Global Styles -------------------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f4f8fb;
+      color: #333;
+    }
+
+    /* -------------------- Header -------------------- */
+    header {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    header h1 {
+      font-size: 38px;
+      font-weight: 700;
+    }
+
+ nav {
+  background: #34495e;
+  padding: 1px 20px;
+               /* align items horizontally */
+  justify-content: space-evenly; /* links left, button right */
+  align-items: center;            /* center vertically */
+  position: static;               /* stays below header */
+  margin-top: 0;
+}
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    
+
+    /* -------------------- Home Section -------------------- */
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px 50px;
+      gap: 40px;
+    }
+
+    .container {
+      max-width: 480px;
+    }
+
+    .container h2 {
+      font-size: 40px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .container p {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #555;
+    }
+
+    .img img {
+      width: 620px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* -------------------- Why Expense Tracker Heading -------------------- */
+    .text {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .text h2 {
+      font-size: 36px;
+      font-weight: 700;
+      color: #2c3e50;
+    }
+
+    /* -------------------- Features Cards -------------------- */
+    .s {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      padding: 30px 40px;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+      transition: 0.3s ease-in-out;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .card h2 {
+      font-size: 22px;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #555;
+      font-size: 15px;
+    }
+
+    /* -------------------- Footer -------------------- */
+    footer {
+      background: #2c3e50;
+      padding: 15px 0;
+      text-align: center;
+    }
+
+    footer p {
+      color: white;
+      font-size: 14px;
+    }
+
+    /* -------------------- Responsive -------------------- */
+    @media (max-width: 900px) {
+      section {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .img img {
+        width: 85%;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <header>
+    <h1>Expense Tracker</h1>
+    <p style="color: white;">Manage your budget smartly</p>
+  </header>
+
+  <nav id="navbar">
+  <div id="a" style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+  <!-- Home -->
+  <section>
+    <div id="Home" class="container">
+      <h2>Take control of your <br>
+
+        Expense today.</h2>
+      <p>track your spending,unplesh your saving! <br>Transform expenses into finacial freedom!</p>
+      <p style="color: rgb(98, 165, 233);">Expense Tracker empowers you to make informed finacial decision. Our <br>
+        intuitive tools help you to visulise your spending patterns, set realistics <br>
+        budgets, and achieve your finacial goals with ease.</p>
+    </div>
+    <div class="img">
+      <img
+        src="data:image/webp;base64,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"
+        alt="">
+    </div>
+
+  </section>
+  <div class="text">
+    <h2>Why Expense Tracker?</h2>
+  </div>
+  <section class="s">
+    <div class="card">
+      <h2>Easy to use</h2>
+      <p>Our easy to use interface makes it simole to track your expenses and stay on top of your finances.</p>
+    </div>
+    <div class="card">
+      <h2>Finacial Insights</h2>
+      <p>Get detailed reports and visulisation to understand where your money goes and how to save more effectively.</p>
+    </div>
+    <div class="card">
+      <h2>Daily Tracking</h2>
+      <p>Easily log and categorise your daily expenses,ensuring you stay on top of your spending habits.</p>
+    </div>
+    <div class="card">
+      <h2>Group Expenses</h2>
+      <p>Create groups to organize shared expenses,split costs, and settle up easily with friends and family.</p>
+    </div>
+  </section>
+  <footer>
+    <p style="color: white;"> Expense Tracker | Built with trust for better money management</p>
+  </footer>
+  </div>
+
+  <script>
+    // Navigation click handlers
+    document.getElementById("homeBtn").onclick = () => {
+      window.location.href = "homepage.html";
+    };
+
+    document.getElementById("servicesBtn").onclick = () => {
+      window.location.href = "services.html";
+    };
+
+    document.getElementById("aboutBtn").onclick = () => {
+      window.location.href = "about.html";
+    };
+    document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
+
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
+  </script>
+
+  <script>
+  // Check if user is logged in
+  const loggedInUser = localStorage.getItem("loggedInUser");
+   const nav = document.getElementById("a");
+  // Create Sign-in and Sign-up buttons if logged out
+  if (!loggedInUser) {
+
+    // Create Buttons Dynamically
+    const nav = document.querySelector("nav");
+
+    let signup = document.createElement("button");
+    signup.id = "signupBtn";
+    signup.innerText = "Sign-Up";
+    signup.onclick = () => window.location.href = "signup.html";
+
+    let signin = document.createElement("button");
+    signin.id = "signinBtn";
+    signin.innerText = "Sign-In";
+    signin.onclick = () => window.location.href = "signin.html";
+
+    
+
+  } else {
+    // User logged in → show Dashboard + Sign Out
+    const nav = document.querySelector("nav");
+
+    let dashboard = document.createElement("button");
+    dashboard.id  = "dashboardBtn";
+    dashboard.classList.add("nav_button")
+    dashboard.innerText = "Dashboard";
+    dashboard.onclick = () => window.location.href = "dashboard.html";
+
+    let signout = document.createElement("button");
+    signout.id = "signOutBtn";
+    signout.classList.add("nav_button")
+    signout.innerText = "Sign Out";
+
+    signout.onclick = () => {
+      // Update user state to INACTIVE
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+
+      users = users.map(user => {
+        if (user.email === loggedInUser) {
+          user.state = "inactive";
+        }
+        return user;
+      });
+
+      localStorage.setItem("users", JSON.stringify(users));
+      localStorage.removeItem("loggedInUser");
+
+      alert("Signed out successfully!");
+      window.location.href = "signin.html";
+    };
+
+    a.appendChild(dashboard);
+    a.appendChild(signout);
+  }
+</script>
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>

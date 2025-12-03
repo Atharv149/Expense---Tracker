@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Expense Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Expense Tracker</h1>
+    <p style="color: white;">Manage your budget smartly</p>
+  </header>
+
+  <nav id="navbar">
+  <div style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button class="nav_button" id="homeBtn">Home</button>
+    <button class="nav_button" id="servicesBtn">Services</button>
+    <button class="nav_button" id="aboutBtn">About Us</button>
+    <button class="nav_button"id="signupBtn">Sign-up</button>
+    <button class="nav_button" id="signinBtn">Sign-in</button>
+</div>
+</nav>
+  <!-- ✔ Parent Wrapper Contains Both Sections -->
+  <div class="dashboardWrapper">
+
+    <!-- Main Dashboard Content -->
+    <div id="dashboard" class="container">
+
+      <h2>Welcome to Expense Tracker</h2>
+
+      <div class="summary" style="padding:10px";>
+        <p style="padding:10px";><strong>Total Income:</strong> <span id="totalIncome">0</span></p>
+        <p style="padding:10px";><strong>Total Expense:</strong> <span id="totalExpense">0</span></p>
+        <p style="padding:10px";><strong>Balance:</strong> <span id="balance">0</span></p>
+      </div>
+
+      
+      <div class="charts">
+        <canvas id="pieChart"></canvas>
+        <canvas id="barChart"></canvas>
+      </div>
+
+        <div class="transactionHistory" style="width: 90%;">
+    
+      <div class="btn-btn">
+        <h3 style="text-align: left;" >Transaction History</h3>
+       <a href="all-history.html"> <button id="BtnViewAll">Veiw All</button></a>
+        
+      </div>
+      <div id="history"></div>
+
+
+      </div>
+
+
+      <!-- Modal -->
+      <div id="modal" class="modal">
+        <div class="modal-content">
+          <span id="closeModal">&times;</span>
+          <p id="modalMessage"></p>
+        </div>
+      </div>
+
+    </div>
+
+<div class="container2">
+          <h3>Add Transaction</h3>
+          <select id="type">
+            <option value="income">Income</option>
+            <option value="expense">Expense</option>
+          </select>
+          <input type="text" id="desc" placeholder="Description" />
+          <input type="number" id="amount" placeholder="Amount" />
+          <input type="date" id="date" />
+          <button id="addBtn">Add transaction</button>
+        </div>
+    
+
+  </div>
+  <footer>
+  Expense Tracker | Built for better money management
+</footer>
+
+  <script>
+    // Page navigation handlers
+    document.getElementById("homeBtn").addEventListener("click", function () {
+      window.location.href = "homepage.html";
+    });
+
+    document.getElementById("dashboardBtn").addEventListener("click", function () {
+      window.location.href = "dashboard.html";
+    });
+
+    document.getElementById("servicesBtn").addEventListener("click", function () {
+      window.location.href = "services.html";
+    });
+
+    document.getElementById("aboutBtn").addEventListener("click", function () {
+      window.location.href = "about.html";
+    });
+      
+    // Sign Out button handler
+    document.getElementById("signOutBtn").addEventListener("click", function () {
+
+  let loggedUser = localStorage.getItem("loggedInUser");
+  let users = JSON.parse(localStorage.getItem("users")) || [];
+
+  // Update user state = inactive
+  users = users.map(user => {
+    if (user.email === loggedUser) {
+      user.state = "inactive";
+    }
+    return user;
+  });
+
+  localStorage.setItem("users", JSON.stringify(users));
+
+  // Remove active session
+  localStorage.removeItem("loggedInUser");
+
+  alert("You have been signed out!");
+  window.location.href = "signin.html";
+});
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="dashboard.js"></script>
+
+</body>
+
+</html>

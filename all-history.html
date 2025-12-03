@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>All Transactions</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+    body {
+      background: #f4f8fb;
+      color: #333;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+    }
+    header h1 {
+      font-size: 38px;
+      font-weight: 700;
+    }
+    nav {
+      background: #34495e;
+      padding: 0px 20px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    nav button {
+      
+      
+      
+      cursor: pointer;
+      width: 100px;
+  
+  padding: 8px 5px;
+  border-radius: 50px;
+  background: white;
+  color: #34495e;
+  border: none;
+  cursor: pointer;
+  font-weight: bold; 
+  margin-left: 15px;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+    }
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    select, input[type="date"], button {
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      width: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background: #3c5467;
+      color: white;
+    }
+    tr:hover {
+      background: #f1f1f1;
+    }
+    /* Modal background */
+.modal {
+  display: none; /* hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+/* Modal box */
+.modal-content {
+  background: white;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Close button */
+.close {
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Expense Tracker</h1>
+    <p style="color: white;">Manage your budget smartly</p>
+  </header>
+
+  <nav id="navbar">
+    <div id="a" style="
+    width: fit-content;
+    margin-left: auto;
+  ">
+    <button id="homeBtn">Home</button>
+    <button id="servicesBtn">Services</button>
+    <button id="aboutBtn">About Us</button>
+    <!-- Dynamic buttons will be added here -->
+     </div>
+  </nav>
+
+  <h2>Transactions History</h2>
+
+  <div class="filters">
+    <select id="filter">
+      <option value="all">All</option>
+      <option value="thisWeek">This Week</option>
+      <option value="lastWeek">Last Week</option>
+      <option value="thisMonth">This Month</option>
+      <option value="lastMonth">Last Month</option>
+    </select>
+    <label>From: <input type="date" id="fromDate"></label>
+    <label>To: <input type="date" id="toDate"></label>
+    <button id="applyRange">Apply</button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Amount</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody id="allHistory"></tbody>
+  </table>
+   <!-- Modal -->
+<div id="successModal" class="modal">
+  <div class="modal-content">
+    <span id="closeModal" class="close">&times;</span>
+    <p id="modalMessage">Transaction updated successfully!</p>
+  </div>
+</div>
+  <script src="all-history.js"></script>
+</body>
+</html>

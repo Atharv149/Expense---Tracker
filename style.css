@@ -1,0 +1,281 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #333;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background:white;
+  color: #333;
+}
+
+/* ---------------- HEADER ---------------- */
+
+/* ---------------- HEADER ---------------- */
+header {
+  background: #2c3e50;      /* Dark blue background */
+  color: white;
+  padding: 30px 20px;       /* Increase height like screenshot */
+  text-align: center;
+}
+
+header h1 {
+  font-size: 38px;
+  margin: 0;
+  font-weight: 700;
+}
+
+header p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: white;             /* Ensure subtitle remains white */
+}
+ 
+  
+ 
+/* ---------------- FIXED NAV ---------------- */
+nav {
+  background: #34495e;
+  padding: 1px 20px;
+           /* align items horizontally */
+  justify-content: space-evenly; /* links left, button right */
+  align-items: center;            /* center vertically */
+  position: static;               /* stays below header */
+  margin-top: 0;
+}
+
+nav a {
+  color: white;
+  margin: 0 0px;
+  padding-left: 5%;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Sign Out button styling */
+.nav_button {
+  
+  width: 100px;
+  
+  padding: 8px 5px;
+  border-radius: 50px;
+  background: white;
+  color: #34495e;
+  border: none;
+  cursor: pointer;
+  font-weight: bold; 
+  margin-left: 15px;
+}
+
+#signOutBtn:hover {
+  background: #e0e0e0;
+}
+
+
+/* --------------- MAIN WRAPPER (flex layout) ---------------- */
+.dashboardWrapper {
+  margin-top: 20px;  /* push below fixed nav */
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* ---------------- LEFT MAIN CONTAINER ---------------- */
+.container {
+  width: 70%;
+  background: rgb(253, 252, 252);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------------- TRANSACTION SIDEBAR ---------------- */
+.transactionHistory {
+  background: #f8f8f8;
+  padding: 15px;
+  border-left: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 9px rgba(0,0,0,0.1);
+  margin-left: 30px;
+  margin-top: 20px;
+}
+
+.transactionHistory h3 {
+  margin-top: 0;
+  text-align: center;
+  color: #2c3e50;
+  font-weight: bold;
+  
+}
+
+#history div {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ---------------- CHARTS ---------------- */
+.charts {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 10px;
+}
+.container1{
+  width: 40%;
+  background: rgb(253, 252, 252);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.charts canvas {
+  width: 350px !important;
+  height: 350px !important;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: white;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* ---------------- GRID ---------------- */
+.grid {
+  width: 50%;
+  margin: 20px auto;
+  
+}
+
+/* ---------------- BUTTONS & INPUTS ---------------- */
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #cfd6de;
+  border-radius: 8px;
+}
+
+button {
+  background: #2c3e50;
+  color: white;
+  cursor: pointer;
+}
+
+
+ #BtnViewAll {
+  width: 100px;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #cfd6de;
+  border-radius: 8px;
+}
+footer {
+      background: #34495e;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-content {
+  background: #fff;
+  margin: 15% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+#closeModal {
+  float: right;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/* Wrapper for the two buttons */
+.btn-btn {
+  display: flex;
+  justify-content: right;
+  gap: 399px;
+  margin: 15px 0;
+}
+
+/* Shared button style */
+.BtnViewAll,
+.BtnViewSelected {
+  padding: 8px 16px;
+  background: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+/* Hover effect */
+.BtnViewAll:hover,
+.BtnViewSelected:hover {
+  background: #1f2d3a;
+}
+
+/* Optional: make both equal width */
+.BtnViewAll {
+  width: 120px;
+  text-align: center;
+}
+
+#Sign-up, #Sign-in{
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+.container2{
+  margin-top: 20px;
+}
+.small-btn {
+  font-size: 12px;
+  padding: 4px 6px;
+  margin: 0 2px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.edit-btn { background-color: #f1c40f; color: white; }
+.delete-btn { background-color: #e74c3c; color: white; }
+.save-btn { background-color: #2ecc71; color: white; }
+.cancel-btn { background-color: #95a5a6; color: white; }
+
