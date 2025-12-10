@@ -109,9 +109,24 @@ if (userFound) {
     localStorage.setItem("users", JSON.stringify(users));
 
     localStorage.setItem("loggedInUser", enteredUser);
+const msg = document.createElement("div");
+  msg.innerText = "Login successful! Redirecting to dashboard...";
+  msg.style.position = "fixed";
+  msg.style.top = "20px";
+  msg.style.left = "50%";
+  msg.style.transform = "translateX(-50%)";
+  msg.style.background = "black";
+  msg.style.color = "white";
+  msg.style.padding = "10px 20px";
+  msg.style.borderRadius = "5px";
+  msg.style.zIndex = "9999";
+  document.body.appendChild(msg);
 
-    alert("Login successful! Redirecting to dashboard...");
+  // Redirect after 2 seconds
+  setTimeout(() => {
     window.location.href = "dashboard.html";
+  }, 2000);
+
 }
 });
 </script>

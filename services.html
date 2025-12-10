@@ -64,7 +64,7 @@ nav {
   <div style="
     width: fit-content;
     margin-left: auto;
-  ">
+  "id="a">
     <button class="nav_button" id="homeBtn">Home</button>
     <button class="nav_button" id="servicesBtn">Services</button>
     <button class="nav_button" id="aboutBtn">About Us</button>
@@ -77,10 +77,10 @@ nav {
 <h1 style="text-align:center; margin: 20px;">Our Services</h1>
 
 <div class="services">
-  <div class="card"><h2>Track Expenses</h2><p>Monitor your daily spending effortlessly.</p></div>
-  <div class="card"><h2>Budget Planner</h2><p>Create and manage custom budgets.</p></div>
-  <div class="card"><h2>Group Expenses</h2><p>Split bills easily with friends or family.</p></div>
-  <div class="card"><h2>Reports</h2><p>See charts and insights for better decisions.</p></div>
+  <div class="card"><h2>Track Expenses</h2><p  style="padding: 10px;">Monitor your daily spending effortlessly.</p></div>
+  <div class="card"><h2>Budget Planner</h2><p  style="padding: 10px;">Create and manage custom budgets.</p></div>
+  <div class="card"><h2>Group Expenses</h2><p  style="padding: 10px;">Split bills easily with friends or family.</p></div>
+  <div class="card"><h2>Reports</h2><p  style="padding: 10px;">See charts and insights for better decisions.</p></div>
 </div>
 
 <footer>
@@ -190,7 +190,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dashboardBtn.classList.add("nav_button");
   dashboardBtn.innerText = "Dashboard";
   dashboardBtn.onclick = () => window.location.href = "dashboard.html";
-  navContainer.appendChild(dashboardBtn);
+  a.prepend(dashboardBtn);
 
   // ---- Sign Out Button ----
   const signOutBtn = document.createElement("button");
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     location.reload(); // show sign-in/sign-up again
   };
 
-  navContainer.appendChild(signOutBtn);
+  a.appendChild(signOutBtn);
 
 });
 </script>
