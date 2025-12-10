@@ -17,7 +17,7 @@
   <div style="
     width: fit-content;
     margin-left: auto;
-  ">
+  "id="a">
     <button class="nav_button" id="homeBtn">Home</button>
     <button class="nav_button" id="servicesBtn">Services</button>
     <button class="nav_button" id="aboutBtn">About Us</button>
@@ -88,22 +88,20 @@
 
   <script>
     // Page navigation handlers
-    document.getElementById("homeBtn").addEventListener("click", function () {
-      window.location.href = "homepage.html";
-    });
+     document.getElementById("homeBtn").onclick = () =>
+    window.location.href = "homepage.html";
 
-    document.getElementById("dashboardBtn").addEventListener("click", function () {
-      window.location.href = "dashboard.html";
-    });
+  document.getElementById("signupBtn").onclick = () =>
+    window.location.href = "signup.html";
 
-    document.getElementById("servicesBtn").addEventListener("click", function () {
-      window.location.href = "services.html";
-    });
+  document.getElementById("signinBtn").onclick = () =>
+    window.location.href = "signin.html";
 
-    document.getElementById("aboutBtn").addEventListener("click", function () {
-      window.location.href = "about.html";
-    });
-      
+  document.getElementById("servicesBtn").onclick = () =>
+    window.location.href = "services.html";
+
+  document.getElementById("aboutBtn").onclick = () =>
+    window.location.href = "about.html";
     // Sign Out button handler
     document.getElementById("signOutBtn").addEventListener("click", function () {
 
@@ -210,7 +208,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dashboardBtn.classList.add("nav_button");
   dashboardBtn.innerText = "Dashboard";
   dashboardBtn.onclick = () => window.location.href = "dashboard.html";
-  nav.appendChild(dashboardBtn);
+  a.prepend(dashboardBtn);
 
   // ---- Sign Out Button ----
   const signOutBtn = document.createElement("button");
@@ -232,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
     location.reload(); // show sign-in/sign-up again
   };
 
-  nav.appendChild(signOutBtn);
+  a.appendChild(signOutBtn);
 
 });
 </script>

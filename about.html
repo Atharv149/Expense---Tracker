@@ -57,7 +57,7 @@ nav {
   <div style="
     width: fit-content;
     margin-left: auto;
-  ">
+  "id="a">
     <button class="nav_button" id="homeBtn">Home</button>
     <button class="nav_button" id="servicesBtn">Services</button>
     <button class="nav_button" id="aboutBtn">About Us</button>
@@ -72,10 +72,10 @@ nav {
 
 <section class="content">
   <h2>Our Mission</h2>
-  <p>We created Expense Tracker to help individuals and families take control of their finances.</p>
+  <p style="padding: 10px;">We created Expense Tracker to help individuals and families take control of their finances.</p>
 
   <h2>Who We Are</h2>
-  <p>We are a passionate team of developers and finance enthusiasts.</p>
+  <p  style="padding: 10px;">We are a passionate team of developers and finance enthusiasts.</p>
 </section>
 
 <footer>
@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
   dashboardBtn.classList.add("nav_button");
   dashboardBtn.innerText = "Dashboard";
   dashboardBtn.onclick = () => window.location.href = "dashboard.html";
-  navContainer.appendChild(dashboardBtn);
+  a.prepend(dashboardBtn);
 
   // ---- Sign Out Button ----
   const signOutBtn = document.createElement("button");
@@ -183,7 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
     location.reload(); // show sign-in/sign-up again
   };
 
-  navContainer.appendChild(signOutBtn);
+  a.appendChild(signOutBtn);
 
 });
 </script>

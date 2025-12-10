@@ -61,8 +61,8 @@ if (!loggedInUser) {
     window.location.href = "signin.html";
   };
 
-  nav.appendChild(dashboard);
-  nav.appendChild(signout);
+  a.prepend(dashboard);
+  a.appendChild(signout);
 }
 
 // -------------------------------
